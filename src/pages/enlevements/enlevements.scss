@@ -1,0 +1,28 @@
+page-enlevements {
+  ion-item-sliding {
+    margin-bottom: 5px;
+  }
+
+  .enlevement {
+    border: 1px solid color($colors,altylyasecondary) !important;
+    border-radius: 5px !important;
+    /*margin-bottom: 5px !important;*/
+
+    .data {
+      height : 20px;
+    }
+
+    .date {
+      float: left;
+    }
+
+    .nombre {
+      float: right;
+    }
+
+    .ordonnance {
+      text-align: center;
+      clear: both;
+    }
+  }
+}

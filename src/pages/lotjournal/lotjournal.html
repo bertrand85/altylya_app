@@ -1,0 +1,50 @@
+<!--
+  Generated template for the LotjournalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><ion-icon name="calendar"></ion-icon> {{selectedDate}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onSave(LotJournal)">
+        Ok<ion-icon name="md-done-all"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  {{lot.sexe}}
+  <form #LotJournal="ngForm" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label >Mort. matin</ion-label>
+        <ion-input type="text" [(ngModel)]="dayData.mort_matin" name="mort_matin"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="lot.sexe==99">
+        <ion-label >Mort. matin</ion-label>
+        <ion-input type="text" [(ngModel)]="dayData.mort_matin" name="mort_matin"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label >Mort. soir</ion-label>
+        <ion-input type="text" [(ngModel)]="dayData.mort_soir" name="mort_soir"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label >Pesée</ion-label>
+        <ion-input type="text" [(ngModel)]="dayData.poids" name="poids"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label >Aliment distribué</ion-label>
+        <ion-input type="text" [(ngModel)]="dayData.aliment" name="aliment"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Comments</ion-label>
+        <ion-textarea [(ngModel)]="dayData.description" name="description"></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

@@ -1,0 +1,55 @@
+page-selling {
+  .cell-vente {
+
+    text-align: center;
+    margin-bottom: 10px;
+    border: 1px solid #cccccc;
+
+
+    ion-icon {
+      font-size: 2.5em;
+      clear: both;
+    }
+
+    p {
+      font-size: 1em;
+      clear: both;
+
+    }
+
+    .envoyes {
+      background-color: #1569ff;
+    }
+
+    .lus {
+      background-color: #757575;}
+
+    .commandes {
+      background-color: #2ec95c;
+    }
+
+    .envoyes, .lus, .commandes {
+      ion-icon {
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  .contacts {
+    div {
+      border:  1px solid #ccc;
+      margin:5px;
+      text-align: center;
+      padding-top:5px;
+    }
+  }
+
+  .archive {
+    div {
+      border : 1px solid #ccc;
+      margin : 5px;
+      text-align: center;
+      padding-top:5px;
+    }
+  }
+}

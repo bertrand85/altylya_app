@@ -1,0 +1,52 @@
+<!-- show item ------------------------------------------------------------------- -->
+<div>
+<ion-grid *ngIf="mode=='show'" (click)="editForm();">
+  <ion-row>
+    <ion-col col-8>{{item.label}}</ion-col>
+    <ion-col col-4 text-right>{{item.value * item.quantity}}</ion-col>
+  </ion-row>
+</ion-grid>
+
+<!-- edit item ---------------------------------------------------------------------- -->
+<ion-list no-lines *ngIf="mode=='edit'" id="margeitem-form">
+  <form [formGroup]="formItem">
+    <ion-item>
+      <ion-label>Designation</ion-label>
+      <ion-input formControlName="label" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Quantité</ion-label>
+      <ion-input formControlName="quantity" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Prix/unité</ion-label>
+      <ion-input formControlName="value" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Unité</ion-label>
+      <ion-input formControlName="unitvalue" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Commentaire</ion-label>
+      <ion-input formControlName="comment" type="text"></ion-input>
+    </ion-item>
+
+  </form>
+  <button ion-button small color="altylyasecondary" icon-start (click)="saveForm()">
+    <ion-icon name='calendar'></ion-icon>
+    Enregistrer
+  </button>
+  <button ion-button small color="danger" icon-start (click)="cancelForm()">
+    <ion-icon name='calendar'></ion-icon>
+    Annuler
+  </button>
+  <button ion-button small end color="danger" icon-start (click)="deleteForm()">
+    <ion-icon name='calendar'></ion-icon>
+    Supprimer
+  </button>
+</ion-list>
+</div>

@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="closeModal()">Annuler</button>
+    </ion-buttons>
+    <ion-title>Aliments</ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="saveModal()">Ok</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <form [formGroup]="slideAliments">
+      <ion-list no-lines>
+        <ion-row *ngFor="let alim of aliment?.items, let i=index" class="row-alim">
+          <ion-col col-12>
+            <ion-item>
+              <ion-label floating>Pathologie</ion-label>
+              <ion-input type="text" value="{{aliment?.items[i].name}}" name="alimname[]" required></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked>Du</ion-label>
+              <ion-input type="date" value="{{aliment?.items[i].dateDebut}}" name="dateDebut[]" required></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked>Au</ion-label>
+              <ion-input type="date" value="{{aliment?.items[i].dateFin}}" name="dateFin[]" required></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12>
+            <ion-item>
+              <ion-label floating>Vétérinaire</ion-label>
+              <ion-input type="text" value="{{aliment?.items[i].veterinaire}}" name="veterinaire[]" required></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label floating>Temps d'attente</ion-label>
+              <ion-input type="text" value="{{aliment?.items[i].tempsAttente}}" name="tempsAttente[]" required></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label floating>Ordonnance</ion-label>
+              <ion-input type="text" value="{{aliment?.items[i].ordonnance}}" name="ordonnance[]" required></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12>
+            <button ion-button clear small color="altylyasecondary" icon-start (click)="deleteAliment(i)" float-left>
+              <ion-icon name="trash" item-end></ion-icon><span item-end>Supprimer cet aliment</span>
+            </button>
+          </ion-col>
+        </ion-row>
+
+
+      </ion-list>
+      <button ion-button clear small color="altylyasecondary" icon-start (click)="addAliment()" float-right>
+        <ion-icon name="md-add" item-end></ion-icon><span item-end>Ajouter un aliment</span>
+      </button>
+
+    </form>
+
+
+  </div>
+</ion-content>

@@ -1,0 +1,43 @@
+page-enlevementica {
+  .swiper-slide {
+    /*display: block;*/
+  }
+
+  .scroll-content {
+    /* regle disparition lors d'un clic sur zone de saisie */
+    padding-bottom:0px !important;
+  }
+
+  .wizard {
+    display: none;
+    opacity: 0;
+  }
+
+  .wizard-active {
+    display: block;
+    opacity: 1;
+    transition: opacity 1s;
+  }
+
+  .slide-title {
+    text-align: center;
+    font-size: 1.5em;
+  }
+
+  p.error {
+    color : color($colors,danger)
+  }
+
+  .row-alim {
+     border-bottom: 1px solid #ccc;
+  }
+
+  .row-alim .date {
+    float: left;
+  }
+
+  .row-alim .nombre {
+    float: right;
+  }
+}
+

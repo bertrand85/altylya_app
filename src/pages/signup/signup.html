@@ -1,0 +1,96 @@
+<ion-header xmlns="http://www.w3.org/1999/html">
+	<ion-navbar>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title>Créer un compte</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content class="login-page">
+
+	<div class="logo">
+		<img src="assets/imgs/logo.png" alt="Altylya Logo">
+	</div>
+
+	<form #signupForm="ngForm" novalidate>
+		<ion-list no-lines>
+			<ion-item>
+				<ion-label floating="" color="primary">Adresse e-mail</ion-label>
+				<ion-input [(ngModel)]="signup.username" name="username" type="email" #username="ngModel" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>
+				Adresse e-mail obligatoire
+			</p>
+
+			<ion-item>
+				<ion-label floating color="primary">Mot de passe</ion-label>
+				<ion-input [(ngModel)]="signup.password" name="password" type="password" #password="ngModel" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>
+				Mot de passe obligatoire
+			</p>
+
+      <ion-item>
+        <ion-label floating color="primary">Nom</ion-label>
+        <ion-input [(ngModel)]="signup.firstname" name="firstname" type="text" #firstname="ngModel" required>
+        </ion-input>
+      </ion-item>
+      <p ion-text [hidden]="firstname.valid || submitted == false" color="danger" padding-left>
+        Entrez votre nom
+      </p>
+
+      <ion-item>
+        <ion-label floating color="primary">Prénom</ion-label>
+        <ion-input [(ngModel)]="signup.lastname" name="lastname" type="text" #lastname="ngModel" required>
+        </ion-input>
+      </ion-item>
+      <p ion-text [hidden]="lastname.valid || submitted == false" color="danger" padding-left>
+        Entrez votre prénom
+      </p>
+
+
+      <ion-item>
+        <ion-label floating color="primary">N° de portable</ion-label>
+        <ion-input [(ngModel)]="signup.mobile_phone" name="mobile_phone" type="tel" #mobile_phone="ngModel" required>
+        </ion-input>
+      </ion-item>
+      <p ion-text [hidden]="mobile_phone.valid || submitted == false" color="danger" padding-left>
+        Entrez votre N° de portable
+      </p>
+		</ion-list>
+
+
+    <div padding margin-bottom>
+      <ion-list  no-lines radio-group [(ngModel)]="signup.usertype" name="usertype" id="usertype">
+        <ion-item>
+          <ion-label>Eleveur</ion-label>
+          <ion-radio value="1" checked></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Technicien</ion-label>
+          <ion-radio value="2"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Vétérinaire</ion-label>
+          <ion-radio value="3"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div padding margin-bottom>
+      <ion-list  no-lines>
+        <ion-item>
+          <ion-label class="cgu">J'accepte les conditions générales d'utilisation</ion-label>
+          <ion-checkbox required  [(ngModel)]="cgu" name="cgu"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </div>
+		<div padding>
+			<button ion-button (click)="onSignup(signupForm)" type="submit" block class="button-background">Créer mon compte</button>
+		</div>
+	</form>
+
+</ion-content>

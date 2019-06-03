@@ -1,0 +1,41 @@
+<!--
+  Generated template for the SupportMessagesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Support</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <button ion-button clear small color="altylyasecondary" icon-start  float-right (click)="addMessage()">
+    <ion-icon name="md-add" item-end></ion-icon><span item-end>Nouveau message</span>
+  </button>
+  <ion-list no-lines >
+    <ion-item-sliding #item *ngFor="let message of messages; let i = index">
+      <button ion-item   class="message-div" (click)="editMessage(i)">
+        <div [class.message-norespond]="message.admin_read_date==null"
+             [class.message-respond]="message.admin_read_date!=null"
+             [class.message-read-response]="message.user_read_date!=null">
+          <span class="date">{{message.date | date:'dd/MM/yyyy'}}</span>
+          <span class="message">{{message.message}}</span>
+          <span class="reponse_date">{{message.admin_read_date | date:'dd/MM/yyyy'}}</span>
+          <span class="reponse">{{message.reponse}}</span>
+        </div>
+      </button>
+      <ion-item-options side="right">
+        <button ion-button color="danger"  (click)="delete(i, message.id)">Supprimer</button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+</ion-content>

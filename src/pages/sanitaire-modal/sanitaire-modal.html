@@ -1,0 +1,55 @@
+<!--
+  Generated template for the SanitaireModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+  <ion-buttons left>
+    <button ion-button (click)="closeModalSanitaire()">Annuler</button>
+  </ion-buttons>
+  <ion-title>Traitement</ion-title>
+  <ion-buttons end>
+
+    <button ion-button icon-only (click)="onSaveSanitaire(Sanitaire)">
+      Enreg.<!--<ion-icon name="md-done-all"></ion-icon>-->
+    </button>
+
+  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form #Sanitaire="ngForm" novalidate>
+    <ion-list >
+      <ion-item>
+        <ion-label floating >Symptome</ion-label>
+        <ion-input type="text" [(ngModel)]="Data.symptome" name="symptome"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Produit administré</ion-label>
+        <ion-input type="text" [(ngModel)]="Data.produit" name="produit"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>N° ordonnance</ion-label>
+        <ion-input type="text" [(ngModel)]="Data.ordonnance" name="ordonnance"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Qtté administrée</ion-label>
+        <ion-input type="text" [(ngModel)]="Data.qtte_produit" name="qtte_produit"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Mode d'administration</ion-label>
+        <ion-select [(ngModel)]="Data.mode" name="mode">
+          <ion-option value="eau_boisson">Eau de boisson</ion-option>
+          <ion-option value="aliment">Dans l'aliment</ion-option>
+          <ion-option value="pulve_animaux">Pulvérisation sur les animaux</ion-option>
+          <ion-option value="pulve_batiment">Pulvérisation sur le batiment</ion-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+  </form>
+</ion-content>

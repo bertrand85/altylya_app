@@ -1,0 +1,153 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="closeModal()">Annuler</button>
+    </ion-buttons>
+    <ion-title>Etat sanitaire</ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="saveModal()">Ok</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <ion-list>
+      <ion-item-divider color="secondary">
+        <ion-label>Etat sanitaire</ion-label>
+      </ion-item-divider>
+      <form [formGroup]="slideEtatSanitaire">
+        <ion-list>
+          <ion-row>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label floating>Pds vif 15j</ion-label>
+                <ion-input formControlName="pdsVif15j" type="text"></ion-input>
+
+              </ion-item>
+            </ion-col>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label floating>Pds vif 8j</ion-label>
+                <ion-input formControlName="pdsVif8j" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12>
+              <ion-item>
+                <ion-label floating >Pds vif estimé abattage</ion-label>
+                <ion-input formControlName="pdsVifAbattage" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label floating>Mortalité total</ion-label>
+                <ion-input formControlName="mortTotalNb" type="text"></ion-input>
+
+              </ion-item>
+            </ion-col>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label floating>%</ion-label>
+                <ion-input formControlName="mortTotalPourcent" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label floating>Mortalité 0-10j</ion-label>
+                <ion-input formControlName="mort10jNb" type="text"></ion-input>
+
+              </ion-item>
+            </ion-col>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label floating>%</ion-label>
+                <ion-input formControlName="mort10Pourcent" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label floating>Mortalité 15 derniers J</ion-label>
+                <ion-input formControlName="mortLast15Nb" type="text"></ion-input>
+
+              </ion-item>
+            </ion-col>
+            <ion-col col-6>
+              <ion-item>
+                <ion-label floating>%</ion-label>
+                <ion-input formControlName="mortLast15Pourcent" type="text"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12>
+              <ion-label floating >Observations</ion-label>
+              <ion-textarea formControlName="observations" rows="5"></ion-textarea>
+            </ion-col>
+          </ion-row>
+        </ion-list>
+
+      </form>
+
+    </ion-list>
+    <ion-list>
+      <ion-item-divider color="secondary">
+        <ion-label>Analyse salmonelles</ion-label>
+      </ion-item-divider>
+      <form [formGroup]="slideSalmonelle">
+        <ion-list no-lines>
+
+          <ion-item>
+            <ion-label>Analyse effectuée ?</ion-label>
+            <ion-checkbox formControlName="salmoAnalyse" type="checkbox"></ion-checkbox>
+          </ion-item>
+
+          <ion-item>
+            <ion-label fixed>Date prélèvement</ion-label>
+            <ion-input formControlName="salmoDatePrelev" type="date"></ion-input>
+
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Laboratoire</ion-label>
+            <ion-input formControlName="salmoLabo" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Présence de salmonelles</ion-label>
+            <ion-checkbox formControlName="salmoResultat" type="checkbox"></ion-checkbox>
+          </ion-item>
+          <ion-item>
+            <ion-label>Si oui, sérotype</ion-label>
+            <ion-input formControlName="salmoSerotype" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Elevage dérogatoire</ion-label>
+            <ion-checkbox formControlName="salmoEleDerog" type="checkbox"></ion-checkbox>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Dérogation enlèvement en continu</ion-label>
+            <ion-checkbox formControlName="derogEnlevContinu" type="checkbox"></ion-checkbox>
+          </ion-item>
+          <ion-item>
+            <ion-label>Dérogation tout plein tout vide</ion-label>
+            <ion-checkbox formControlName="derogToutPleinVide" type="checkbox"></ion-checkbox>
+
+          </ion-item>
+
+        </ion-list>
+
+
+      </form>
+
+    </ion-list>
+
+  </div>
+</ion-content>

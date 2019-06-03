@@ -1,0 +1,111 @@
+<!--
+  Generated template for the MyelevagePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mon élevage</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onSave(ElevageForm)">
+        Enreg.<!--<ion-icon name="md-done-all"></ion-icon>-->
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-border-top google>
+    <ion-segment [(ngModel)]="elevagesegment">
+      <ion-segment-button value="general">
+        Général
+      </ion-segment-button>
+      <ion-segment-button value="adresse">
+        Adresse
+      </ion-segment-button>
+      <ion-segment-button value="batiments">
+        Batiments
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <form #ElevageForm="ngForm" novalidate>
+    <div [ngSwitch]="elevagesegment">
+
+      <ion-list no-lines *ngSwitchCase="'general'">
+        <ion-item>
+          <ion-label floating>Nom de l'élevage *</ion-label>
+          <ion-input type="text" [(ngModel)]="myElevage.name" name="name" #name="ngModel" required></ion-input>
+        </ion-item>
+        <p ion-text [hidden]="name.valid || submitted == false" color="danger" padding-left>
+          Nom de l'élevage obligatoire
+        </p>
+        <ion-item>
+          <ion-label floating>Numéro national</ion-label>
+          <ion-input type="text" [(ngModel)]="myElevage.numnational" name="numnational"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Téléphone</ion-label>
+          <ion-input type="text" [(ngModel)]="myElevage.work_phone" name="work_phone"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Mobile</ion-label>
+          <ion-input type="text" [(ngModel)]="myElevage.mobile_phone" name="mobile_phone"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-list  *ngSwitchCase="'adresse'">
+        <ion-item>
+          <ion-label floating>Adresse</ion-label>
+          <ion-input type="text" [(ngModel)]="myElevage.streetone" name="streetone"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Complément d'adresse</ion-label>
+          <ion-input type="text" [(ngModel)]="myElevage.streettwo" name="streettwo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Code postal</ion-label>
+          <ion-input type="text" [(ngModel)]="myElevage.zipcode" name="zipcode"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Ville</ion-label>
+          <ion-input type="text" [(ngModel)]="myElevage.city" name="city"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <div  *ngSwitchCase="'batiments'" >
+        <ion-fab *ngIf="user.hasElevage" bottom right class="bationfab">
+          <button ion-fab mini (click)="addBatiment()" color="altylyasecondary"><ion-icon name="add"></ion-icon></button>
+        </ion-fab>
+        <p *ngIf="!user.hasElevage">Vous devez enregistrer votre élévage avant de créer des batiments</p>
+        <ion-list  *ngFor="let bat of user.batiments; let i = index" class="batiment-list">
+          <ion-item-sliding #item>
+          <ion-item (click)="openBatiment(bat, i)">
+            <ion-avatar item-start>
+              <img *ngIf="bat.avatar==''" src="https://api060.altylya.com/images/bat1.png" />
+              <img *ngIf="bat.avatar!=''" src="https://api060.altylya.com/images/batiments/{{bat.avatar}}" />
+            </ion-avatar>
+            <h2>{{bat.name}}</h2>
+            <p>{{bat.surface}} m2</p>
+          </ion-item>
+            <ion-item-options side="right">
+              <button ion-button color="danger" (click)="deleteBatiment(i, bat.id)">Supprimer</button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </div>
+
+    </div>
+
+    <!--<ion-footer>
+      <button ion-button (click)="onSave(ElevageForm)" type="submit" block color="altylya">Enregistrer</button>
+    </ion-footer>-->
+
+  </form>
+</ion-content>

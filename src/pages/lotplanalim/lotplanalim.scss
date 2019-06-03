@@ -1,0 +1,118 @@
+page-lotplanalim {
+  .plan-detail {
+    border: 1px solid color($colors, altylyasecondary) !important;
+    border-radius: 5px !important;
+    margin-bottom: 5px !important;
+    margin: 0 0 2px;
+    overflow: inherit;
+    font-size: 1.4rem;
+    line-height: normal;
+    text-overflow: inherit;
+    color: #666;
+  }
+
+  .plan-detail-type-1:before {
+    content: '';
+    border-left:5px solid #d8a508 !important;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 25px;
+    /*border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;*/
+  }
+
+  .plan-detail-type-2, .plan-detail-type-1, .plan-detail-type-3 {
+    margin-left: 20px;
+  }
+
+  .plan-detail-type-2:before {
+    content: '';
+    border-left:5px solid #2029d5 !important;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 25px;
+    /*border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;*/
+  }
+
+  .plan-detail-type-3:before {
+    content: '';
+    border-left:5px solid #be0807 !important;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 25px;
+    /*border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;*/
+  }
+
+
+  .type-aliment {
+    display: block;
+    text-align: center;
+    position: absolute;
+    transform: rotate(0.75turn);
+    top: 50%;
+    text-align: left;
+    left: -26px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .type-aliment-correc {
+    left: -20px;
+    top: 43%;
+  }
+
+  .plan-detail-type-3 .type-aliment{
+    left: -12px;
+  }
+
+  .semaines, .date {
+    display: block;
+    text-align: right;
+    font-size: 0.8em;
+    padding: 3px 0;
+  }
+
+  .quantite {
+    display: block;
+    font-size: 0.8em;
+    padding: 3px 0;
+  }
+
+  .qtte-totale, .prix_tonne {
+    display: block;
+    text-align: right;
+    font-size: 0.8em;
+    padding: 3px 0;
+  }
+
+  .title {
+    display: block;
+
+  }
+
+  .qtte_animal {
+    display: block;
+    text-align: right;
+    font-size: 0.8em;
+    padding: 3px 0;
+  }
+
+  .reste_a_commander {
+    display: block;
+    text-align: right;
+    font-size: 0.8em;
+    padding: 3px 0;
+  }
+
+  .info_cout {
+    clear: both;
+    margin-top:10px;
+    font-size: 0.8em;
+    padding: 3px 0;
+  }
+}

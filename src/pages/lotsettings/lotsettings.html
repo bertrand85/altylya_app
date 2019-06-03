@@ -1,0 +1,152 @@
+<!--
+  Generated template for the LotsettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Lot</ion-title>
+    <ion-buttons end>
+      <button  *ngIf="lot.status==1" ion-button icon-only (click)="onSave(LotForm)">
+        Enreg.<!--<ion-icon name="md-done-all"></ion-icon>-->
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-border-top google>
+    <ion-segment [(ngModel)]="lotsegment">
+      <ion-segment-button value="general">
+        Général
+      </ion-segment-button>
+      <ion-segment-button value="technique">
+        Technique
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="lot.status==2" class="backdrop-abattu"><div class="backdrop-abattu-label">Ce lot est abattu, modifications impossibles</div> </div>
+  <form #LotForm="ngForm" novalidate>
+    <div [ngSwitch]="lotsegment">
+      <ion-list no-lines *ngSwitchCase="'general'">
+        <ion-item>
+          <ion-label floating>Nom *</ion-label>
+          <ion-input type="text" [(ngModel)]="lot.name" name="name" #name="ngModel" required></ion-input>
+        </ion-item>
+        <p ion-text [hidden]="name.valid || submitted == false" color="danger" padding-left>
+          Nom de lot obligatoire
+        </p>
+        <ion-item>
+          <ion-label floating>Batiment</ion-label>
+          <ion-select [(ngModel)]="lot.batiment_id" name="batiment_id" (ionChange)="batChange()">
+            <ion-option *ngFor="let g of User.batimentListe" value="{{g.id}}">{{g.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Date d'entrée *</ion-label>
+          <ion-input type="date" [(ngModel)]="lot.date_entree" name="date_entree" #date_entree="ngModel" required></ion-input>
+        </ion-item>
+        <p ion-text [hidden]="date_entree.valid || submitted == false" color="danger" padding-left>
+          Date d'entrée obligatoire
+        </p>
+        <ion-item>
+          <ion-label floating>Sexe</ion-label>
+
+          <ion-select [(ngModel)]="lot.sexe" name="sexe">
+            <ion-option value="1">Mâles</ion-option>
+            <ion-option value="2">Femelles</ion-option>
+            <ion-option value="3">Mâles et femelles</ion-option>
+            <ion-option value="99">Non séxés</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="lot.sexe!=3">
+          <ion-label floating>Nombre mis en place *</ion-label>
+          <ion-input type="text" [(ngModel)]="lot.nombre" name="nombre" #nombre="ngModel" required></ion-input>
+        </ion-item>
+        <p *ngIf="lot.sexe==3">Nombre mis en place *</p>
+        <ion-row *ngIf="lot.sexe==3">
+          <ion-col>
+            <ion-item>
+              <ion-label floating>Mâles</ion-label>
+              <ion-input type="text" [(ngModel)]="lot.nombre" name="nombre" #nombre="ngModel" required></ion-input>
+            </ion-item>
+            <p ion-text [hidden]="nombre.valid || submitted == false" color="danger" padding-left>
+              Entrer un nombre
+            </p>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label floating>Femelles</ion-label>
+              <ion-input type="text" [(ngModel)]="lot.nombre_p2" name="nombre_p2" #nombre_p2="ngModel" required></ion-input>
+            </ion-item>
+            <p ion-text [hidden]="nombre_p2.valid || submitted == false" color="danger" padding-left>
+              Entrer un nombre
+            </p>
+          </ion-col>
+          <p ion-text [hidden]="nombre_p2.valid || nombre.valid || submitted == false" color="danger" padding-left>
+          Nombre obligatoire
+        </p>
+        </ion-row>
+
+        <ion-item>
+          <ion-label floating>Groupement</ion-label>
+          <ion-select [(ngModel)]="lot.groupement_id" name="groupement_id">
+            <ion-option value="0">Autre</ion-option>
+            <ion-option *ngFor="let g of User.lotSaisieRef.groupements" value="{{g.id}}">{{g.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="lot.groupement_id==0">
+          <ion-label floating>Entrez le nom du groupement</ion-label>
+          <ion-input type="text" [(ngModel)]="other_data.groupement" name="groupement" #groupement="ngModel" ></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-list no-lines *ngSwitchCase="'technique'">
+        <ion-item>
+          <ion-label floating>Espèce</ion-label>
+          <ion-select [(ngModel)]="lot.espece_id" name="espece_id">
+            <ion-option *ngFor="let g of User.lotSaisieRef.especes" value="{{g.id}}">{{g.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Destination</ion-label>
+          <ion-select [(ngModel)]="lot.destination_id" name="destination_id">
+            <ng-container *ngFor="let d of User.lotSaisieRef.destinations" >
+              <ion-option  *ngIf="d.espece_id==lot.espece_id"  value="{{d.id}}">{{d.name}}</ion-option>
+            </ng-container>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Accouvoir</ion-label>
+
+          <ion-select [(ngModel)]="lot.accouvoir_id" name="accouvoir_id">
+            <ion-option value="0">Autre</ion-option>
+            <ion-option *ngFor="let a of User.lotSaisieRef.accouvoirs" value="{{a.id}}">{{a.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="lot.accouvoir_id==0">
+          <ion-label floating>Entrez le nom de l'accouvoir</ion-label>
+          <ion-input type="text" [(ngModel)]="other_data.accouvoir" name="accouvoir" #accouvoir="ngModel" ></ion-input>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label stacked>Souche</ion-label>
+          <ion-select [(ngModel)]="lot.souche_id" name="souche_id">
+            <ion-option value="0">Autre</ion-option>
+            <ng-container *ngFor="let g of User.lotSaisieRef.souches">
+              <ion-option   *ngIf="g.espece_id==lot.espece_id" value="{{g.id}}">{{g.name}}</ion-option>
+            </ng-container>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="lot.souche_id==0">
+          <ion-label floating>Entrez le nom de la souche</ion-label>
+          <ion-input type="text" [(ngModel)]="other_data.souche" name="souche" #souche="ngModel" ></ion-input>
+        </ion-item>
+      </ion-list>
+    </div>
+
+  </form>
+</ion-content>

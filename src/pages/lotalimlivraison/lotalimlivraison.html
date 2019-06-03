@@ -1,0 +1,86 @@
+<!--
+  Generated template for the LotplanalimdetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="closeModal()">Annuler</button>
+    </ion-buttons>
+    <ion-title>Livraison</ion-title>
+    <ion-buttons  *ngIf="lotStatus==1" end>
+      <button ion-button icon-only (click)="save()">
+        Enreg.<!--<ion-icon name="md-done-all"></ion-icon>-->
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="lotStatus==2" class="backdrop-abattu"><div class="backdrop-abattu-label">Ce lot est abattu, modifications impossibles</div> </div>
+  <ion-list no-lines>
+    <form [formGroup]="livraisonForm">
+
+      <ion-item>
+        <ion-label floating>Type d'aliment</ion-label>
+        <ion-select formControlName="aliment_type">
+          <ion-option value="1">Démarrage</ion-option>
+          <ion-option value="2">Croissance</ion-option>
+          <ion-option value="3">Finition</ion-option>
+          <ion-option value="4">Gavage</ion-option>
+        </ion-select>
+
+      </ion-item>
+      <ion-item *ngIf="!livraisonForm.controls.aliment_type.valid  && (livraisonForm.controls.aliment_type.dirty || submitAttempt)">
+        <p class="error">Champ requis</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Nom de l'aliment</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Date livraison</ion-label>
+        <ion-input formControlName="date" type="date"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!livraisonForm.controls.date.valid  && (livraisonForm.controls.date.dirty || submitAttempt)">
+        <p class="error">Champ requis</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Quantité livrée en T</ion-label>
+        <ion-input formControlName="quantite" type="text"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!livraisonForm.controls.quantite.valid  && (livraisonForm.controls.quantite.dirty || submitAttempt)">
+        <p class="error">Champ requis</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Prix d'achat/T</ion-label>
+        <ion-input formControlName="prix" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Produit supplémentation</ion-label>
+        <ion-input formControlName="supplement" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Délai d'attente</ion-label>
+        <ion-input formControlName="supp_delai" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>N° ordonnance</ion-label>
+        <ion-input formControlName="supp_ordo" type="text"></ion-input>
+      </ion-item>
+    </form>
+
+  </ion-list>
+</ion-content>

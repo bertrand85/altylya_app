@@ -1,0 +1,62 @@
+<ion-card>
+  <ion-card-header>
+    <div class="img">
+      <img src="http://mvp.altylya.com/imgs/bat1.jpg">
+    </div>
+    <div class="header">
+      <div class="lotcode">
+        {{lot.definition.name}} - {{lot.definition.batiment_id | avidestination:[User.batimentListe]}}
+      </div>
+      <div class="infoslot">
+        {{lot.definition.destination_id | avidestination:[User.lotSaisieRef?.destinations]}}
+      </div>
+      <div class="infoscomp">
+        <div class="dateentree">Date d'entrée : {{dateEntree}}</div>
+        <div class="age" *ngIf="lot.instant_datas">{{lot.instant_datas.age_s}} s</div>
+      </div>
+    </div>
+    <ion-buttons end>
+      <button ion-button icon-only transparent (click)="lotsettings(lot,i)">
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-grid no-padding>
+      <ion-row justify-content-start no-padding>
+        <ion-col col-4>
+          <justgage [options]="options_mortalite" [max]="max_mortalite" [value]="lot.instant_datas.txmortalite" ></justgage>
+
+        </ion-col>
+        <ion-col col-4>
+          <justgage [options]="options_poids" [max]="max_poids" [value]="lot.instant_datas.poids" ></justgage>
+        </ion-col>
+        <ion-col col-4>
+          <justgage [options]="options_ic" [max]="max_ic" [value]="lot.instant_datas.indiceconso" ></justgage>
+        </ion-col>
+
+      </ion-row>
+
+    </ion-grid>
+    <ion-row no-padding>
+      <!--<ion-col col-4 no-padding>
+        <button ion-button clear small color="altylyasecondary" icon-start (click)="lotsettings(lot,i)">
+          <ion-icon name='settings'></ion-icon>
+          Param.
+        </button>
+      </ion-col>-->
+      <ion-col  col-6 text-center no-padding>
+        <button ion-button clear small color="altylyasecondary" icon-start (click)="lotjournalhisto(lot,i)">
+          <ion-icon name='calendar'></ion-icon>
+          Journal
+        </button>
+      </ion-col>
+      <ion-col  col-6 text-center no-padding>
+        <button ion-button clear small color="altylyasecondary" icon-start>
+          <ion-icon name='bus'></ion-icon>
+          Enlèv.
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>

@@ -1,0 +1,102 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+#ioncontent-menu {
+    /*background-image:url(../assets/imgs/backgroundmenu.jpg);
+    background-size: cover;*/
+    }
+
+#menulogo {
+	background-image:url(../assets/imgs/headerbck.png);
+     text-align: center;
+     padding: 10px 0 30px 0;
+     background-repeat: no-repeat;
+        background-repeat: no-repeat;
+    background-size: 100% 165px;
+    padding-bottom: 10px;
+
+  .button-profil {
+    position: absolute;
+    top: 0;
+    right: 10px;
+  }
+}
+
+#menulogo h4 {
+  font-weight: bold;
+  padding-top: 0px;
+}
+
+.menuButton {
+    background-color: transparent;
+    border: none;
+    /*color: #fff;*/
+}
+
+.menuButton  .item-inner {
+    border: none !important;
+}
+
+.level2 {
+  margin-left: 20px;
+  font-size: 1.3rem;
+}
+
+ion-input, ion-select, ion-textarea {
+  /*background-color: color($colors, inputs);
+  padding-left: 5px;*/
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 18px;
+}
+
+ion-select {
+  padding-left: 10px !important;
+}
+
+.label-md[stacked], .label-md[floating],
+.label-ios[stacked], .label-ios[floating]{
+  padding-left: 10px;
+  margin-top : 3px !important;
+}
+
+select-text {
+  padding-left: 5px;
+}
+
+.item-inner, .item-input:last-child {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.backdrop-abattu {
+  position: fixed;
+  top:0;
+  left:0;
+  bottom: 0;
+  right:0;
+  z-index: 80;
+}
+
+.backdrop-abattu-label {
+  position: absolute;
+  bottom: 10px;
+  padding: 5px 0;
+  background-color: #f50000;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+}

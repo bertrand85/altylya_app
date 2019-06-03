@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Vente directe
+    </ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="addVente()">
+          <ion-icon name="md-add"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 *ngFor="let vente of ventes_en_cours" class="cell-vente">
+        <ion-icon name="basket"></ion-icon>
+        <p>{{vente.name}}</p>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-4 class="envoyes">
+              <ion-icon name="contacts"></ion-icon>
+              250 contacts
+            </ion-col>
+            <ion-col col-4 class="lus">
+              <ion-icon name="mail-open"></ion-icon>
+              170 mails lus
+            </ion-col>
+            <ion-col col-4 class="commandes">
+              <ion-icon name="cart"></ion-icon>
+              100 commandes
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 class="contacts" >
+        <div>
+          <a (click)="gotoSellingClients()">
+          <ion-icon name="contacts"></ion-icon>
+          <p>Liste clients</p>
+          </a>
+        </div>
+      </ion-col>
+      <ion-col col-6 class="archive">
+        <div>
+          <ion-icon name="ios-archive"></ion-icon>
+          <p>Anciennes ventes</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  En cours de développement (fin avril)
+</ion-content>

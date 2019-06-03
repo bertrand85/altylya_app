@@ -1,0 +1,172 @@
+<!--
+  Generated template for the LotplanalimdetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="closeModal()">Annuler</button>
+    </ion-buttons>
+    <ion-title>Plan d'alim.</ion-title>
+    <ion-buttons *ngIf="lotStatus==1"  end>
+      <button ion-button icon-only (click)="save()">
+        Enreg.<!--<ion-icon name="md-done-all"></ion-icon>-->
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="lotStatus==2" class="backdrop-abattu"><div class="backdrop-abattu-label">Ce lot est abattu, modifications impossibles</div> </div>
+     <form [formGroup]="planForm">
+      <ion-list no-lines>
+
+      <ion-item>
+        <ion-label floating>Type d'aliment</ion-label>
+        <ion-select formControlName="aliment_type">
+          <ion-option value="1">Démarrage</ion-option>
+          <ion-option value="2">Croissance</ion-option>
+          <ion-option value="3">Finition</ion-option>
+          <ion-option value="4">Gavage</ion-option>
+        </ion-select>
+
+      </ion-item>
+      <ion-item *ngIf="!planForm.controls.aliment_type.valid  && (planForm.controls.aliment_type.dirty || submitAttempt)">
+        <p ion-text  color="danger" padding-left>
+          Champ requis</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Nom de l'aliment</ion-label>
+        <ion-input formControlName="aliment_nom" type="text"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!planForm.controls.aliment_nom.valid  && (planForm.controls.aliment_nom.dirty || submitAttempt)">
+        <p ion-text  color="danger" padding-left>
+          Champ requis</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Age début en jours</ion-label>
+        <ion-input formControlName="age_debut" type="text" (ionBlur)="recalculEtapes()"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!planForm.controls.age_debut.valid  && (planForm.controls.age_debut.dirty || submitAttempt)">
+        <p ion-text  color="danger" padding-left>
+          Champ requis</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Age fin en jours</ion-label>
+        <ion-input formControlName="age_fin" type="text" (ionBlur)="recalculEtapes()"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!planForm.controls.age_fin.valid  && (planForm.controls.age_fin.dirty || submitAttempt)">
+        <p ion-text  color="danger" padding-left>
+          Champ requis</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Kg d'aliment / animal</ion-label>
+        <ion-input formControlName="qtte_par_animal" type="text"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!planForm.controls.qtte_par_animal.valid  && (planForm.controls.qtte_par_animal.dirty || submitAttempt)">
+        <p ion-text  color="danger" padding-left>
+          Champ requis</p>
+      </ion-item>
+
+      <!--<ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label floating>Poids Objectif fin de période en Kg</ion-label>
+            <ion-input formControlName="poids_objectif" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col *ngIf="lotSexe==3">
+          <ion-item>
+            <ion-label floating>Poids Objectif fin de période des femelles en Kg</ion-label>
+            <ion-input formControlName="poids_objectif_p2" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>-->
+
+
+    <!--  <ion-item>
+        <ion-label floating>Indice de consommation</ion-label>
+        <ion-input formControlName="ic_objectif" type="text"></ion-input>
+      </ion-item>
+-->
+      </ion-list>
+     </form>
+  <h5>Objectifs semaines <span *ngIf="lotSexe==3">Mâles</span> </h5>
+  <form #Etapes="ngForm" novalidate>
+    <ion-list>
+     <ion-grid>
+       <ion-row style="border-top: 1px solid #333333;">
+         <ion-col col-2 style="text-align: center">Sem.</ion-col>
+         <ion-col col-3 style="text-align: center">Poids Kg</ion-col>
+         <ion-col col-3 style="text-align: center">% Mort</ion-col>
+         <ion-col col-3 style="text-align: center">IC</ion-col>
+       </ion-row>
+       <ion-row class="planEtapes"  *ngFor="let i of plan.etapes; let j=index ">
+
+         <ion-col col-2 style="text-align: center"><p>{{plan.etapes[j].semaine}}</p></ion-col>
+         <ion-col col-3>
+           <ion-input type="number" value="{{plan.etapes[j].poids_objectif}}" name="poids[]" required></ion-input>
+         </ion-col>
+         <ion-col col-3>
+           <ion-input type="number" value="{{plan.etapes[j].mort_objectif}}" name="mort[]" required></ion-input>
+         </ion-col>
+         <ion-col col-3>
+           <ion-input type="number" value="{{plan.etapes[j].ic_objectif}}" name="ic[]" required></ion-input>
+         </ion-col>
+         <ion-col col-12>
+           <ion-item>
+             <!--<ion-input type="textarea"  rows="5" value="{{plan.etapes[j].interventions}}" name="interventions[]" required placeholder="Interventions à prévoir"></ion-input>-->
+            <ion-textarea rows="1" value="{{plan.etapes[j].interventions}}" name="interventions[]"  placeholder="Interventions à prévoir"></ion-textarea>
+           </ion-item>
+         </ion-col>
+         <!--<ion-col col-12>
+           <ion-item>
+             <!--<ion-input type="textarea"  rows="5" value="{{plan.etapes[j].interventions}}" name="interventions[]" required placeholder="Interventions à prévoir"></ion-input>-->
+            <!-- <ion-textarea rows="1" value="{{plan.etapes[j].observations}}" name="observations[]"  placeholder="Observations"></ion-textarea>
+           </ion-item>
+         </ion-col>-->
+       </ion-row>
+     </ion-grid>
+    </ion-list>
+
+  </form>
+
+  <h5 *ngIf="lotSexe==3">Objectifs semaines Femelles </h5>
+  <form #EtapesFemelles="ngForm" novalidate *ngIf="lotSexe==3">
+    <ion-list>
+      <ion-grid>
+        <ion-row style="border-top: 1px solid #333333;">
+          <ion-col col-2 style="text-align: center">Sem.</ion-col>
+          <ion-col col-4 style="text-align: center">Poids Kg</ion-col>
+          <ion-col col-4 style="text-align: center">% Mort</ion-col>
+         <!--<ion-col col-3 style="text-align: center">IC</ion-col>-->
+        </ion-row>
+        <ion-row class="planEtapes"  *ngFor="let i of plan.etapes; let j=index ">
+
+          <ion-col col-2 style="text-align: center"><p>{{plan.etapes[j].semaine}}</p></ion-col>
+          <ion-col col-4>
+            <ion-input type="number" value="{{plan.etapes[j].poids_objectif_p2}}" name="poids_p2[]" required></ion-input>
+          </ion-col>
+          <ion-col col-4>
+            <ion-input type="number" value="{{plan.etapes[j].mort_objectif_p2}}" name="mort_p2[]" required></ion-input>
+          </ion-col>
+          <!--<ion-col col-3>
+            <ion-input type="text" value="{{plan.etapes[j].ic_objectif_p2}}" name="ic_p2[]" required></ion-input>
+          </ion-col>-->
+
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+
+  </form>
+
+</ion-content>

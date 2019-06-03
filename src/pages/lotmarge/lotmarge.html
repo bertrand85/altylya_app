@@ -1,0 +1,52 @@
+<!--
+  Generated template for the LotmargePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Marge Brute</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <p>Marge total : {{margeProvider.marge?.marge}}</p>
+  <p>Marge m2 : {{margeProvider.marge?.marge_mcarre}}</p>
+  <ion-segment [(ngModel)]="showWhat" color="primary" mode="ios">
+    <ion-segment-button value="produits" class="produitsegment">
+      Produits
+    </ion-segment-button>
+    <ion-segment-button value="charges" class="chargesegment">
+      Charges
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-card *ngIf="showWhat=='produits'">
+    <ion-card-content no-padding>
+      <ion-list *ngFor="let produit of margeProvider.marge?.produits, let i=index">
+           <margeitem [value]="produit" (itemSaved)="saveMarge()" (itemDelete)="deleteItem('produit',i)"></margeitem>
+      </ion-list>
+      <button ion-button clear small color="altylyasecondary" icon-start (click)="addProduit()">
+        <ion-icon name='calendar'></ion-icon>
+        Ajout produit
+      </button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="showWhat=='charges'">
+    <ion-card-content no-padding>
+      <ion-list *ngFor="let charge of margeProvider.marge?.charges, let i=index">
+        <margeitem [value]="charge" (itemSaved)="saveMarge()" (itemDelete)="deleteItem('charge',i)"></margeitem>
+      </ion-list>
+      <button ion-button clear small color="altylyasecondary" icon-start (click)="addCharge()">
+        <ion-icon name='calendar'></ion-icon>
+        Ajout charge
+      </button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

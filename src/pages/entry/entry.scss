@@ -1,0 +1,41 @@
+page-entry {
+  ion-content {
+    background-image: url(../assets/imgs/background.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;;
+  }
+
+  #logo {
+    text-align: center;
+    margin-top: 20%;
+    margin-bottom: 0px;
+  }
+  #logo img {
+    width:150px;
+  }
+
+  p {
+    text-align: center;
+    color: #ffffff;
+    font-size: 1.3em;
+  }
+
+  p.bold {
+    font-weight: bold;
+  }
+
+  .center {
+    text-align: center;
+  }
+  button {
+    color: #ffffff;
+    border:2px solid #fff;
+    background: transparent;
+    height: 50px;
+    margin-bottom: 20px;
+    width: 60%;
+    max-width: 250px;
+    font-weight: bold;
+    font-size: 15px;
+  }
+}

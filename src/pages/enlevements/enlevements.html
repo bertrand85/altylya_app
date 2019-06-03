@@ -1,0 +1,54 @@
+<!--
+  Generated template for the EnlevementsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Enlevements</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding #item *ngFor="let t of enlevements, let i=index">
+      <ion-item  class="enlevement">
+        <div class="data" (click)="editEnlevement(i)">
+
+          <p class="date">{{t.date}}</p><p class="nombre">{{t.nombre}}</p>
+
+        </div>
+        <ion-icon name="arrow-dropright" item-end  (click)="editEnlevement(i)"></ion-icon>
+        <button  ion-button clear small color="altylyasecondary" icon-start (click)="makeIcaEnlev(t.id,i)">
+          <ion-icon name='calendar'></ion-icon>
+          Fiche ICA
+        </button>
+        <button *ngIf="t.statusica==1" ion-button clear small color="altylyasecondary" icon-start (click)="showIcaPdf(t.id)">
+          <ion-icon name='calendar'></ion-icon>
+          PDF
+        </button>
+      </ion-item>
+
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="deleteEnlevementsForLot(i, t.id)">Supprimer <ion-icon name="trash"></ion-icon></button>
+        <button ion-button color="danger" (click)="makeIcaEnlev(t.id)">ICA <ion-icon name="trash"></ion-icon></button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <button ion-button clear small color="altylyasecondary" icon-start (click)="addEnlevement(null, -1)" float-right>
+      <ion-icon name="md-add" item-end></ion-icon><span item-end>Ajouter enlèvement</span>
+    </button>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>Lot entièrement abbatu ? </ion-label>
+      <ion-checkbox [(ngModel)]="isAbbatu" (click)="isAbbatuChange()"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <!--<button ion-button full color="primary" (click)="makeIca()">fiche ICA</button>
+  fiche ICA en cours de développement (fin avril)-->
+</ion-content>

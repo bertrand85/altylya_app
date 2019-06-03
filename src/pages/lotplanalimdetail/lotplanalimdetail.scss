@@ -1,0 +1,30 @@
+page-lotplanalimdetail {
+  .small {
+    display: block;
+    text-align: left;
+    font-size: 0.8em;
+    padding: 3px 0;
+  }
+
+  .button-edit-small {
+    float: left;
+    font-size: 0.8em;
+    text-transform: none;
+  }
+
+  .label-semaine {
+    border-bottom: 1px solid color($colors, altylyasecondary);
+  }
+
+  .planEtapes .col {
+    padding: 3px 3px;
+    margin: 0;
+    line-height: 0px;
+  }
+  .planEtapes .p {
+    margin: 5px;
+  }
+  .planEtapes input, .planEtapes textarea {
+    margin: 5px 5px;
+  }
+}

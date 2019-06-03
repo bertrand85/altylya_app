@@ -1,0 +1,116 @@
+<!--
+  Generated template for the BatimentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Mes batiments</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onSave(BatimentForm)">
+        Ok<ion-icon name="md-done-all"></ion-icon>
+      </button>
+    </ion-buttons>
+    </ion-navbar>
+  <ion-toolbar no-border-top google>
+    <ion-segment [(ngModel)]="batimentsegment">
+      <ion-segment-button value="general">
+        Général
+      </ion-segment-button>
+      <ion-segment-button value="adresse">
+        Adresse
+      </ion-segment-button>
+      <ion-segment-button value="image">
+        Photo
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form #BatimentForm="ngForm" novalidate>
+    <div [ngSwitch]="batimentsegment">
+
+      <ion-list no-lines *ngSwitchCase="'general'">
+        <ion-item>
+          <ion-label floating>Nom *</ion-label>
+          <ion-input type="text" [(ngModel)]="batiment.name" name="name" #name="ngModel" required></ion-input>
+        </ion-item>
+        <p ion-text [hidden]="name.valid || submitted == false" color="danger" padding-left>
+          Nom du batiment obligatoire
+        </p>
+        <ion-item>
+          <ion-label floating>N° INUAV </ion-label>
+          <ion-input type="text" [(ngModel)]="batiment.num_national" name="num_national" #name="ngModel" ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Surface</ion-label>
+          <ion-input type="text" [(ngModel)]="batiment.surface" name="surface"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Parcour (m2)</ion-label>
+          <ion-input type="text" [(ngModel)]="batiment.surface_parcour" name="surface_parcour"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Structure</ion-label>
+          <ion-select [(ngModel)]="batiment.structure" name="structure">
+            <ion-option value="6">Dur</ion-option>
+            <ion-option value="7">Tunnel</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Type</ion-label>
+          <ion-select [(ngModel)]="batiment.ventilation" name="ventilation">
+            <ion-option value="1">Louisiane</ion-option>
+            <ion-option value="2">Lanterneau</ion-option>
+            <ion-option value="3">Ventilation dynamique</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Sol</ion-label>
+          <ion-select [(ngModel)]="batiment.sol" name="sol">
+            <ion-option value="4">Béton</ion-option>
+            <ion-option value="5">Terre battue</ion-option>
+          </ion-select>
+        </ion-item>
+
+      </ion-list>
+
+      <ion-list  *ngSwitchCase="'adresse'">
+        <ion-item>
+          <ion-label floating>Adresse</ion-label>
+          <ion-input type="text" [(ngModel)]="batiment.streetone" name="street"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Complément d'adresse</ion-label>
+          <ion-input type="text" [(ngModel)]="batiment.streettwo" name="street2"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Code postal</ion-label>
+          <ion-input type="text" [(ngModel)]="batiment.zipcode" name="zipcode"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Ville</ion-label>
+          <ion-input type="text" [(ngModel)]="batiment.city" name="town"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-list  *ngSwitchCase="'image'">
+        <ion-item>
+          <div style="text-align: center">
+            <img *ngIf="batiment.avatar==''" src="https://api060.altylya.com/images/bat1.png" style="width: 150px; height: 150px; border-radius: 50%"/>
+            <img *ngIf="batiment.avatar!='' && photos==''" src="https://api060.altylya.com/images/batiments/{{batiment.avatar}}" style="width: 150px; height: 150px; border-radius: 50%"/>
+            <img *ngIf="photos!=''" src="{{photos}}" style="width: 150px; height: 150px; border-radius: 50%"/>
+          </div>
+          <button class="buttonv" ion-button clear icon-start color="altylyasecondary" (click)="presentActionSheet()">
+            <ion-icon name='create'></ion-icon> Modifier
+          </button>
+        </ion-item>
+
+      </ion-list>
+    </div>
+  </form>
+</ion-content>

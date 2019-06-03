@@ -1,0 +1,54 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title>Login</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div class="logo">
+		<img src="assets/imgs/logo.png" alt="Altylya logo">
+	</div>
+
+	<form #loginForm="ngForm" novalidate>
+		<ion-list no-lines>
+			<ion-item>
+				<ion-label floating color="primary">Adresse e-mail</ion-label>
+				<ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+					required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>
+        Adresse e-mail obligatoire
+			</p>
+
+			<ion-item>
+				<ion-label floating>Mot de passe</ion-label>
+				<ion-input [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>
+        Mot de passe obligatoire
+			</p>
+		</ion-list>
+
+		<ion-row responsive-sm>
+			<ion-col col-sm-12 col-md-12>
+				<button ion-button (click)="onLogin(loginForm)" type="submit" block class="button-background">Connexion</button>
+			</ion-col>
+
+		</ion-row>
+    <ion-row responsive-sm >
+      <ion-col text-center >
+        <a (click)="onForgotPassord()" class="secondary-link">Mot de passe oublié</a>
+
+      </ion-col>
+    </ion-row>
+	</form>
+
+</ion-content>
+<ion-footer light>
+  <button ion-button (click)="onSignup()" color="light" block>Créer un compte</button>
+</ion-footer>

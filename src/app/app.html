@@ -1,0 +1,71 @@
+<ion-menu *ngIf="User.isLogged" [content]="content">
+  <!--<ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>-->
+
+  <ion-content id="ioncontent-menu">
+
+     <div id="menulogo" style="text-align: center;">
+      <h4>{{User.userProfile.name}}</h4>
+       <button menuClose class="button-profil" ion-button clear icon-start color="altylyasecondary" (click)="editProfil()"><ion-icon name='create'></ion-icon></button>
+        <!--<img src="{{imgurl}}{{User.userProfile.avatar}}" style="width: 72px; height: 72px; border-radius: 50%"/>-->
+       <img *ngIf="User.userProfile.avatar==''" src="https://api060.altylya.com/images/avatar.jpg" style="width: 72px; height: 72px; border-radius: 50%"/>
+       <img *ngIf="User.userProfile.avatar!=''" src="https://api060.altylya.com/images/avatars/{{User.userProfile.avatar}}" style="width: 72px; height: 72px; border-radius: 50%"/>
+
+
+    </div>
+    <ion-list>
+      <button *ngIf="User.isEleveur" menuClose ion-item (click)="openPage('MydashboardPage')" class="menuButton">
+        <ion-icon name="home"></ion-icon>
+        Mon élevage
+      </button>
+        <!-- sub menu elevage -->
+        <button *ngIf="User.isEleveur" menuClose ion-item (click)="openPage('MydashboardPage')" class="menuButton level2">
+          <ion-icon name="speedometer"></ion-icon>
+          Tableau de bord
+        </button>
+        <button *ngIf="User.isEleveur" menuClose ion-item (click)="openPage('MyelevagePage')" class="menuButton level2">
+          <ion-icon name="settings"></ion-icon>
+          Paramètres élevage
+        </button>
+        <button *ngIf="User.isEleveur" menuClose ion-item (click)="openPage('MysharingPage')" class="menuButton level2">
+          <ion-icon name="cloud-upload"></ion-icon>
+          Mes partages
+        </button>
+      <button menuClose ion-item (click)="openPage('SharingwithmePage')" class="menuButton">
+        <ion-icon name="git-network"></ion-icon>
+        Elevages suivis
+      </button>
+      <!--<button menuClose ion-item (click)="openPage('SharingmapPage')" class="menuButton">
+        <ion-icon name="git-network"></ion-icon>
+        Elevages amis map
+      </button>-->
+      <!--<button *ngIf="User.isEleveur" menuClose ion-item (click)="openPage('SellingPage')" class="menuButton">
+        <ion-icon name="cart"></ion-icon>
+        Vente directe
+      </button>-->
+       <button menuClose ion-item (click)="openPage('SupportMessagesPage')" class="menuButton">
+        <ion-icon name="help"></ion-icon>
+        Support
+      </button>
+      <!--<button menuClose ion-item (click)="logout()" class="menuButton">
+        <ion-icon name="ion-log-out"></ion-icon>
+        Déconnexion
+      </button>
+      <!--<button menuClose ion-item (click)="openPage('LoginPage')" class="menuButton">
+        <ion-icon name="log-in"></ion-icon>
+        Login
+      </button>
+      <button menuClose ion-item (click)="openPage('SignupPage')" class="menuButton">
+        <ion-icon name="create"></ion-icon>
+        Signup
+      </button>-->
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -1,0 +1,63 @@
+page-lotjournalhisto {
+  .colJournal {
+    text-align: center;
+
+    .col {
+      padding:5px 5px;
+      border:1px solid #eee;
+      /*height: 65px;*/
+    }
+    .inline, .inline span {
+      display: inline !important;
+    }
+    .mort, .day {
+
+      display: block;}
+
+    .mort span {
+      font-size: 10px;
+      background-color: #ee7825;
+      border-radius: 10px;
+      padding: 3px 3px;
+      min-width: 100%;
+      display: block;
+      color: #000;
+    }
+    .aliment {
+
+    }
+    .aliment span {
+      font-size: 10px;
+      background-color: #618eee;
+      border-radius: 10px;
+      padding: 3px 3px;
+      min-width: 100%;
+      display: block;
+      color: #000;
+    }
+
+    .poids span {
+      font-size: 10px;
+      background-color: #53ee72;
+      border-radius: 10px;
+      padding: 3px 3px;
+      min-width: 100%;
+      display: block;
+      color: #000;
+    }
+
+    .today span.day, .today {
+      background-color: color($colors,favorite);
+      padding: 2px 0;
+      border-radius: 5px;
+    }
+    .passedday span.day{
+      text-decoration: line-through;
+      color: #999 !important;
+      /*background-color: color($colors,inactive);*/
+    }
+
+
+  }
+
+}

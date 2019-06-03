@@ -1,0 +1,18 @@
+<ion-content padding>
+  <div id="logo">
+    <img src="assets/imgs/logo.png">
+  </div>
+  <p class="bold">Carnet de bord avicole</p>
+  <p>Version de test 0.5.1</p>
+  <p>&nbsp;</p>
+  <div class="center" *ngIf="User.isInitialize">
+    <button (click)="OnLoginPage()">Connexion</button>
+  </div>
+  <div class="center" *ngIf="User.isInitialize">
+    <button (click)="OnSignupPage()">Créer un compte</button>
+  </div>
+  <div class="center" *ngIf="!User.isInitialize">
+    <ion-spinner name="bubbles"></ion-spinner>
+    <p>Connexion ...</p>
+  </div>
+</ion-content>

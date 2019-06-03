@@ -1,0 +1,30 @@
+<ion-header xmlns="http://www.w3.org/1999/html">
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mot de passe oublié</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="login-page">
+
+  <div class="logo">
+    <img src="assets/imgs/logo.png" alt="Altylya Logo">
+  </div>
+
+  <form #forgotpassForm="ngForm" novalidate>
+    <ion-list no-lines>
+      <ion-item>
+        <ion-label stacked color="primary">Adresse e-mail</ion-label>
+        <ion-input name="username" type="text" required>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div padding>
+      <button ion-button (click)="onSendForgotPassword(signupForm)" type="submit" block>Envoyer la demande</button>
+    </div>
+  </form>
+
+</ion-content>

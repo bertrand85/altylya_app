@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="closeModal()">Annuler</button>
+    </ion-buttons>
+    <ion-title>Le lot</ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="saveModal()">Ok</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <ion-list>
+      <ion-item-divider color="secondary">
+        <ion-label>Lot</ion-label>
+      </ion-item-divider>
+      <form [formGroup]="slideBande">
+        <ion-item>
+          <ion-label floating>Numéro du lot</ion-label>
+          <ion-input formControlName="lotCode" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Souche</ion-label>
+          <ion-input formControlName="souche" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Couvoir</ion-label>
+          <ion-input formControlName="couvoir" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Type de production</ion-label>
+          <ion-select formControlName="productionType" >
+            <ion-option value="1">Standard</ion-option>
+            <ion-option value="2">Bio</ion-option>
+            <ion-option value="3">Labels rouge</ion-option>
+            <ion-option value="4">Certifié</ion-option>
+            <ion-option value="5">Export</ion-option>
+            <ion-option value="6">Autre destination</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Autre destination</ion-label>
+          <ion-input formControlName="productionTypeAutre" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Numéro du bâtiment d’élevage (INUAV) : </ion-label>
+          <ion-input formControlName="batimentINUAV" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Commune du batiment</ion-label>
+          <ion-input formControlName="communeBatiment" type="text"></ion-input>
+        </ion-item>
+
+
+      </form>
+
+    </ion-list>
+    <ion-list>
+      <ion-item-divider color="secondary">
+        <ion-label>Mise en place</ion-label>
+      </ion-item-divider>
+      <form [formGroup]="slideBandeTwo">
+        <ion-item>
+          <ion-label floating>Nombre mis en place</ion-label>
+          <ion-input formControlName="nbMisEnPlace" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Date de mise en place</ion-label>
+          <ion-input formControlName="dateMiseEnPlace" type="date"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Age à la mise en place</ion-label>
+          <ion-input formControlName="ageMiseEnPlace" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Densité (poulet standard, certifié, export)</ion-label>
+          <ion-select formControlName="densite" >
+            <ion-option value="33">33</ion-option>
+            <ion-option value="39">39</ion-option>
+            <ion-option value="42">42</ion-option>
+          </ion-select>
+        </ion-item>
+
+
+      </form>
+
+    </ion-list>
+
+  </div>
+</ion-content>

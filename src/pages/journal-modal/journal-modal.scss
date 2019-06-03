@@ -1,0 +1,33 @@
+page-journal-modal {
+ion-title{
+  text-align: center;
+}
+  .traitementlisttitre {
+    font-size: 15px;
+  }
+  .traitement {
+    border: 1px solid color($colors,altylyasecondary) !important;
+    border-radius: 5px !important;
+    margin-bottom: 5px !important;
+
+    .symptome {
+      float: left;
+    }
+
+    .produit {
+      float: right;
+    }
+
+    .ordonnance {
+      text-align: center;
+      clear: both;
+    }
+  }
+
+  .label {
+    text-align: center;
+
+  }
+
+
+}

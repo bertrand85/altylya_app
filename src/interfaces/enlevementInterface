@@ -1,0 +1,6 @@
+export interface enlevementInterface {
+  id : string,
+  date : string,
+  nombre : number,
+  commentaire : string
+}

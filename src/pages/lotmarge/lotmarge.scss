@@ -1,0 +1,18 @@
+page-lotmarge {
+
+  .produitsegment {
+    background-color: color($colors, secondary);;
+  }
+
+  .chargesegment {
+    background-color: color($colors, danger) ;
+  }
+
+  #produits {
+    background-color: color($colors, secondary);;
+  }
+
+  #charges {
+    background-color: color($colors, danger);;
+  }
+}

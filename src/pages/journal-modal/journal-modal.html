@@ -1,0 +1,168 @@
+<!--
+  Generated template for the JournalModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="closeModal()">Annuler</button>
+    </ion-buttons>
+    <ion-title>Journal</ion-title>
+    <ion-buttons  *ngIf="lot.status==1" end>
+
+      <button ion-button icon-only (click)="onSave(LotJournal)">
+        Enreg.<!--<ion-icon name="md-done-all"></ion-icon>-->
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-border-top google>
+    <ion-segment [(ngModel)]="journalsegment">
+      <ion-segment-button value="general">
+        Général
+      </ion-segment-button>
+      <ion-segment-button value="sanitaire">
+        Sanitaire
+      </ion-segment-button>
+      <ion-segment-button value="moment">
+        Moment
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="lot.status==2" class="backdrop-abattu"><div class="backdrop-abattu-label">Ce lot est abattu, modifications impossibles</div> </div>
+  <h3 class="lotcode" style="color: #777;text-align: center;">date : {{dayData.date}}</h3>
+  <form #LotJournal="ngForm" novalidate>
+    <div [ngSwitch]="journalsegment">
+      <ion-list  *ngSwitchCase="'general'">
+        <ion-row *ngIf="lot.sexe==3">
+          <ion-col class="label">
+            Mâles
+          </ion-col>
+          <ion-col class="label">
+            Femelles
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+            <ion-label floating>Mort. matin</ion-label>
+            <ion-input type="text" [(ngModel)]="dayData.mort_matin" name="mort_matin"></ion-input>
+          </ion-item>
+          </ion-col>
+          <ion-col *ngIf="lot.sexe==3">
+            <ion-item>
+              <ion-label floating>Mort. matin</ion-label>
+              <ion-input type="text" [(ngModel)]="dayData.mort_matin_p2" name="mort_matin_p2"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label  floating>Mort. soir</ion-label>
+              <ion-input type="text" [(ngModel)]="dayData.mort_soir" name="mort_soir"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col *ngIf="lot.sexe==3">
+            <ion-item>
+              <ion-label  floating>Mort. soir</ion-label>
+              <ion-input type="text" [(ngModel)]="dayData.mort_soir_p2" name="mort_soir_p2"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label  floating>Pesée</ion-label>
+              <ion-input type="text" [(ngModel)]="dayData.poids" name="poids"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col *ngIf="lot.sexe==3">
+            <ion-item>
+              <ion-label  floating>Pesée</ion-label>
+              <ion-input type="text" [(ngModel)]="dayData.poids_p2" name="poids_p2"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-12>
+            <ion-label >Aliment</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label  floating>Consommé</ion-label>
+              <ion-input type="text" [(ngModel)]="dayData.aliment" name="aliment"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label  floating>ou stock</ion-label>
+              <ion-input type="text" [(ngModel)]="dayData.aliment_stock" name="aliment_stock"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-item>
+          <ion-label  floating>Eau consommée</ion-label>
+          <ion-input type="text" [(ngModel)]="dayData.eau" name="eau"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Commentaires</ion-label>
+          <ion-textarea [(ngModel)]="dayData.description" name="description"></ion-textarea>
+        </ion-item>
+      </ion-list>
+
+      <ion-list no-lines *ngSwitchCase="'sanitaire'">
+        <ion-item>
+          <ion-label floating>Etat d'emplumement</ion-label>
+          <ion-select >
+            <ion-option value="5">Très bon</ion-option>
+            <ion-option value="4">Bon</ion-option>
+            <ion-option value="3">Moyen</ion-option>
+            <ion-option value="2">Mauvais</ion-option>
+            <ion-option value="1">Très mauvais</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-list-header secondary>
+          <ion-label class="traitementlisttitre">
+            Interventions, traitements
+          </ion-label>
+
+        </ion-list-header>
+        <button ion-item *ngFor="let t of dayData.traitements, let i=index" (click)="openModalSanitaire(t, i)" class="traitement">
+
+            <p class="symptome">{{t.symptome}}</p><p class="produit">{{t.produit}} {{t.qtte_produit}}</p>
+            <p class="ordonnance">Ordonnance N° {{t.ordonnance}} </p>
+
+
+            <ion-icon name="arrow-dropright" item-end=""></ion-icon>
+
+        </button>
+        <button ion-item (click)="openModalSanitaire(null, -1)">
+            <ion-icon name="md-add" item-end></ion-icon>
+        </button>
+      </ion-list>
+
+
+      <ion-list no-lines *ngSwitchCase="'moment'">
+        <ion-item>
+          A venir
+        </ion-item>
+        <!--<ion-card *ngFor="let photo of photos">
+          <img src="{{photo}}" />
+        </ion-card>
+        <button ion-button block (click)="presentActionSheet()">Select Pictures</button>-->
+      </ion-list>
+    </div>
+
+  </form>
+</ion-content>

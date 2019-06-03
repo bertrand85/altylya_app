@@ -1,0 +1,17 @@
+<ion-header no-shadow>
+
+  <ion-navbar no-border-bottom>
+    <ion-title>Fiche ICA</ion-title>
+    <ion-buttons end>
+      <ion-spinner *ngIf="!mediaLoaded" color="light"></ion-spinner>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div #imageParent class="pinch-zoom-container">
+    <img #image id="icaimg" dimg="medium" class="pinch-zoom-image" [src]="enlevement.src" alt="loading.." (load)="setMediaLoaded()">
+  </div>
+</ion-content>

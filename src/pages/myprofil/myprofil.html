@@ -1,0 +1,71 @@
+<!--
+  Generated template for the MyprofilPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profil</ion-title>
+    <ion-buttons end>
+
+      <button ion-button icon-only (click)="save()">
+        Enreg.<!--<ion-icon name="md-done-all"></ion-icon>-->
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div id="menulogo" style="text-align: center;">
+      <div>
+        <img *ngIf="user.userProfile.avatar==''" src="https://api060.altylya.com/images/avatar.jpg" style="width: 72px; height: 72px; border-radius: 50%"/>
+        <img *ngIf="user.userProfile.avatar!=''" src="https://api060.altylya.com/images/avatars/{{user.userProfile.avatar}}" style="width: 72px; height: 72px; border-radius: 50%"/>
+      </div>
+    <button class="buttonv" ion-button clear icon-start color="altylyasecondary" (click)="presentActionSheet()">
+      <ion-icon name='create'></ion-icon> Modifier
+    </button>
+  </div>
+  <ion-list no-lines>
+    <form [formGroup]="profilForm">
+      <ion-item>
+        <ion-label floating>Nom - prénom</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Adresse mail</ion-label>
+        <ion-input formControlName="email" type="text"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!profilForm.controls.email.valid  && (profilForm.controls.email.dirty || submitAttempt)">
+        <p class="error">Champ requis</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Vous êtes</ion-label>
+        <ion-select formControlName="usertype">
+          <ion-option value="1">Eleveur</ion-option>
+          <ion-option value="2">Vétérinaire</ion-option>
+          <ion-option value="3">Technicien</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+      <ion-label floating>Téléphone</ion-label>
+      <ion-input formControlName="mobile_phone" type="text"></ion-input>
+    </ion-item>
+      <ion-item *ngIf="!profilForm.controls.mobile_phone.valid  && (profilForm.controls.mobile_phone.dirty || submitAttempt)">
+        <p class="error">Champ requis</p>
+      </ion-item>
+
+    </form>
+
+  </ion-list>
+</ion-content>

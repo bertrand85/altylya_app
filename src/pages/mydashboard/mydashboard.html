@@ -1,0 +1,159 @@
+<!--
+  Generated template for the MydashboardPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Tableau de bord</ion-title>
+    <ion-buttons end>
+      <button *ngIf="User.hasElevage  && User.batiments.length>0" ion-button icon-only (click)="addLot()">
+        <ion-icon name="md-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  </ion-header>
+
+
+
+<ion-content >
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <p *ngIf="!User.hasElevage">Vous n'avez pas complété les paramètres de votre élevage</p>
+  <p *ngIf="!User.hasElevage">Merci de renseigner ces informations depuis le menu sur la gauche</p>
+  <p *ngIf="User.batiments.length==0">Vous n'avez pas enregistré de batiments</p>
+  <p *ngIf="User.batiments.length==0">Merci de renseigner ces informations depuis le menu paramètres élevage</p>
+  <ion-list *ngFor="let lot of User.lots; let i = index">
+    <ion-card>
+      <ion-card-header>
+        <div *ngIf="lot.definition.status==2" style="position: relative"><div class="abattus">Abattus</div></div>
+
+        <div class="img">
+          <img src="https://api060.altylya.com/images/bat1.png">
+        </div>
+        <div class="header">
+          <div class="lotcode">
+            {{lot.definition.name}} - {{lot.definition.batiment_id | avidestination:[User.batimentListe]}}
+          </div>
+          <div class="infoslot">
+            {{lot.definition.destination_id | avidestination:[User.lotSaisieRef?.destinations]}}
+          </div>
+          <div class="infoscomp">
+            <div class="dateentree">Date d'entrée : {{lot.definition.date_entree | date: 'dd/MM/yyyy' }}</div>
+            <div class="age" *ngIf="lot.instant_datas && lot.definition.status==1">{{lot.instant_datas.age_s}} s</div>
+          </div>
+          <div class="nombrerestants1" *ngIf="lot.definition.sexe!=3">Nombre restants : {{lot.definition.nombre - lot.instant_datas.mort}}</div>
+          <div class="nombrerestants2" *ngIf="lot.definition.sexe==3">
+          <div class="males">Nombre restants mâles : {{lot.definition.nombre - lot.instant_datas.mort}}</div>
+          <div class="femelles">Femelles : {{lot.definition.nombre_p2 - lot.instant_datas.mort_p2}}</div>
+          </div>
+        </div>
+        <ion-buttons end>
+          <button ion-button icon-only transparent (click)="lotsettings(lot,i)">
+            <ion-icon name="settings"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-card-header>
+      <ion-card-content no-padding>
+        <ion-grid no-padding>
+          <p  *ngIf="lot.definition.sexe==3" style="text-align: left; padding-left: 20px">Mâles</p>
+          <ion-row justify-content-start no-padding>
+            <ion-col col-4>
+              <altylyagauge [min]="0" [max]="max_mortalite" [value]="lot.instant_datas.txmortalite"
+                            [options]="{'title':'Mortalité', 'unite':'%'}" (click)="getMortaliteDatas(lot.definition.id,i,1)"></altylyagauge>
+
+            </ion-col>
+            <ion-col col-4>
+
+                <altylyagauge [max]="lot.instant_datas.poidsmax" [min]="lot.instant_datas.poidsmin"
+                            [value]="lot.instant_datas.poids"
+                              [options]="{'title':'Croissance', 'reverseColors':true, 'unite':'Kg', 'unitePosition':'middle'}"
+                              (click)="getCroissanceDatas(lot.definition.id,i,1)"></altylyagauge>
+
+            </ion-col>
+            <ion-col col-4>
+              <altylyagauge [min]="lot.instant_datas.icobjectifmin" [max]="lot.instant_datas.icobjectifmax" [value]="lot.instant_datas.indiceconso"
+                            [options]="{'title':'IC', 'unite':'Kg', 'reverseColors':false, 'unitePosition':'middle'}"></altylyagauge>
+            </ion-col>
+
+          </ion-row>
+          <p  *ngIf="lot.definition.sexe==3" style="text-align: left; padding-left: 20px">Femelles</p>
+          <ion-row *ngIf="lot.definition.sexe==3" justify-content-start no-padding>
+            <ion-col col-4>
+
+                <altylyagauge [min]="0" [max]="max_mortalite" [value]="lot.instant_datas.txmortalite_p2"
+                              [options]="{'title':'Mortalité', 'unite':'%'}" (click)="getMortaliteDatas(lot.definition.id,i,2)"></altylyagauge>
+
+            </ion-col>
+            <ion-col col-4>
+
+              <altylyagauge [max]="lot.instant_datas.poidsmax_p2" [min]="lot.instant_datas.poidsmin_p2"
+                            [value]="lot.instant_datas.poids_p2"
+                            [options]="{'title':'Croissance', 'reverseColors':true, 'unite':'Kg', 'unitePosition':'middle'}"
+                            (click)="getCroissanceDatas(lot.definition.id,i,2)"></altylyagauge>
+            </ion-col>
+
+          </ion-row>
+
+        </ion-grid>
+        <ion-row no-padding>
+          <!--<ion-col col-4 no-padding>
+            <button ion-button clear small color="altylyasecondary" icon-start (click)="lotsettings(lot,i)">
+              <ion-icon name='settings'></ion-icon>
+              Param.
+            </button>
+          </ion-col>-->
+          <ion-col *ngIf="lot.definition.status==1"  col-4 text-center no-padding>
+            <button ion-button clear small color="altylyasecondary" icon-start (click)="lotjournalToday(lot,i)">
+              <ion-icon name='calendar'></ion-icon>
+              Journalier
+            </button>
+          </ion-col>
+          <ion-col *ngIf="lot.definition.status!=1"  col-4 text-center no-padding>
+            <button ion-button clear small color="altylyasecondary" icon-start (click)="lotjournalToday(lot,i)">
+              <ion-icon name='logo-euro'></ion-icon>
+              Marge
+            </button>
+          </ion-col>
+          <ion-col  col-5 text-center no-padding>
+            <button ion-button clear small color="altylyasecondary" icon-start (click)="lotficheelevage(lot.definition.id)">
+              <ion-icon name="clipboard"></ion-icon>
+              Fiche élevage
+            </button>
+          </ion-col>
+          <ion-col  col-3 text-center no-padding>
+            <button ion-button clear small color="altylyasecondary" icon-start (click)="presentActionSheet(lot.definition.id,lot,i)">
+              <ion-icon name="more"></ion-icon>
+              Plus
+            </button>
+          </ion-col>
+          <!--<ion-col  col-4 text-center no-padding>
+            <button ion-button clear small color="altylyasecondary" icon-start (click)="lotaliments(lot,i)">
+              <ion-icon name='pizza'></ion-icon>
+              Aliments
+            </button>
+          </ion-col>
+          <ion-col  col-4 text-center no-padding>
+            <button ion-button clear small color="altylyasecondary" icon-start (click)="lotenlevements(lot,i)">
+              <ion-icon name='bus'></ion-icon>
+              Enlèv.
+            </button>
+          </ion-col>-->
+
+        </ion-row>
+
+        <lotchart [datas]="lot.other" [showChart]="showchart" ></lotchart>
+      </ion-card-content>
+    </ion-card>
+
+
+  </ion-list>
+<!--<iframe style="width: 100%" src="http://altylya.api.lara/ficheelevage/5"></iframe>-->
+</ion-content>

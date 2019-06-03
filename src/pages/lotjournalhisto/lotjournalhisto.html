@@ -1,0 +1,80 @@
+<!--
+  Generated template for the LotjournalhistoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Lot {{lot?.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding-top>
+  <p padding-left class="lotcode" style="color: #777;text-align: center;">date d'entrée : {{lot?.date_entree | date: 'dd/MM/yyyy'}}</p>
+  <ion-grid>
+    <ion-row class="colJournal">
+      <ion-col>
+        <span>
+        <span style="color:#ee7825">
+          Morts
+        </span>
+      </span>
+        <ion-toggle [(ngModel)]="show.mort"></ion-toggle>
+      </ion-col>
+      <ion-col>
+        <span >
+        <span style="color:#53ee72">
+          Pesées
+        </span>
+      </span>
+        <ion-toggle [(ngModel)]="show.poids"></ion-toggle>
+      </ion-col>
+      <ion-col>
+        <span >
+        <span style="color:#618eee">
+          Aliment
+        </span>
+      </span>
+        <ion-toggle [(ngModel)]="show.aliment"></ion-toggle>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+  <ion-row  class="colJournal">
+    <ion-col class="week">&nbsp;</ion-col>
+    <ion-col class="week">{{firstDayLetter[0]}}</ion-col>
+    <ion-col class="week">{{firstDayLetter[1]}}</ion-col>
+    <ion-col class="week">{{firstDayLetter[2]}}</ion-col>
+    <ion-col class="week">{{firstDayLetter[3]}}</ion-col>
+    <ion-col class="week">{{firstDayLetter[4]}}</ion-col>
+    <ion-col class="week">{{firstDayLetter[5]}}</ion-col>
+    <ion-col class="week">{{firstDayLetter[6]}}</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let week of avicalendar; let i = index" class="colJournal">
+    <ion-col class="week">S {{i+1}}</ion-col>
+    <ion-col *ngFor="let day of week">
+      <a (click)="dayClicked( day.dayFromStart)" [ngClass]="{'passedday': day.dayFromStart<todayIsDayNumber,'today':day.dayFromStart==todayIsDayNumber}">
+      <span class="day">{{day.day}}</span>
+      <span *ngIf="show.mort">
+      <span class="mort" *ngIf="day.mort>0 || day.mort_p2>0;else other_content">
+        <span>
+          {{day.mort}}<span *ngIf="lot?.sexe==3 && day.mort_p2>0">{{day.mort_p2}}</span>
+        </span>
+      </span>        <ng-template #other_content><span  class="mort">&nbsp;</span></ng-template>
+      </span>
+
+        <span *ngIf="show.aliment">
+        <span class="aliment"><span *ngIf="day.aliment>0">{{day.aliment}}</span></span>
+        </span>
+        <span *ngIf="show.poids">
+        <span class="poids"><span *ngIf="day.poids>0">{{day.poids}}</span></span>
+        </span>
+      </a>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

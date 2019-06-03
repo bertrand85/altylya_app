@@ -1,0 +1,151 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="closeModal()">Annuler</button>
+    </ion-buttons>
+    <ion-title>L'exploitation</ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="saveModal()">Ok</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <ion-list>
+
+      <ion-item-divider color="secondary">
+        <ion-label>
+          Elevage
+        </ion-label>
+      </ion-item-divider>
+
+    </ion-list>
+    <ion-list>
+
+      <form [formGroup]="slideElevage">
+        <ion-item>
+          <ion-label floating>N° EDE ou Siret</ion-label>
+          <ion-input formControlName="numExploi" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Nom de l'exploitations</ion-label>
+          <ion-input formControlName="nameExploi" type="text"></ion-input>
+        </ion-item>
+        <ion-item
+          *ngIf="!slidesForms[0].controls.nameExploi.valid  && (slidesForms[0].controls.nameExploi.dirty || submitAttempt)">
+          <p class="error">Champ requis</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Nom de l'éleveur</ion-label>
+          <ion-input formControlName="nameEleveur" type="text"></ion-input>
+        </ion-item>
+        <ion-item
+          *ngIf="!slidesForms[0].controls.nameEleveur.valid  && (slidesForms[0].controls.nameEleveur.dirty || submitAttempt)">
+          <p class="error">Champ requis</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Téléphone exploitation</ion-label>
+          <ion-input formControlName="telExploi" type="text"></ion-input>
+        </ion-item>
+        <ion-item
+          *ngIf="!slidesForms[0].controls.telExploi.valid  && (slidesForms[0].controls.telExploi.dirty || submitAttempt)">
+          <p class="error">Champ requis</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Fax exploitation</ion-label>
+          <ion-input formControlName="faxExploi" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Adresse complète</ion-label>
+          <ion-textarea rows="3" formControlName="adresse" type="text"></ion-textarea>
+        </ion-item>
+        <ion-item
+          *ngIf="!slidesForms[0].controls.adresse.valid  && (slidesForms[0].controls.adresse.dirty || submitAttempt)">
+          <p class="error">Champ requis</p>
+        </ion-item>
+
+      </form>
+
+    </ion-list>
+    <ion-list>
+
+      <ion-item-divider color="secondary">
+        <ion-label>
+          Groupement
+        </ion-label>
+      </ion-item-divider>
+
+    </ion-list>
+    <ion-list>
+      <form [formGroup]="slideTechn">
+        <ion-item>
+          <ion-label floating>Nom du groupement ou coop</ion-label>
+          <ion-input formControlName="nameOP" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Adresse complète</ion-label>
+          <ion-textarea rows="3" formControlName="adresseOP" type="text"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Téléphone</ion-label>
+          <ion-input formControlName="telOP" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Fax </ion-label>
+          <ion-input formControlName="faxOP" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Nom de votre technicien</ion-label>
+          <ion-input formControlName="nameTechn" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Téléphone du technicien</ion-label>
+          <ion-input formControlName="telTechn" type="text"></ion-input>
+        </ion-item>
+
+      </form>
+    </ion-list>
+    <ion-list>
+
+      <ion-item-divider color="secondary">
+        <ion-label>
+          Vétérinaire
+        </ion-label>
+      </ion-item-divider>
+
+    </ion-list>
+    <ion-list>
+
+      <form [formGroup]="slideVeto">
+        <ion-item>
+          <ion-label floating>Nom du vétérinaire</ion-label>
+          <ion-input formControlName="nameVeto" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Téléphone</ion-label>
+          <ion-input formControlName="telVeto" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Fax </ion-label>
+          <ion-input formControlName="faxVeto" type="text"></ion-input>
+        </ion-item>
+
+      </form>
+
+    </ion-list>
+
+  </div>
+</ion-content>

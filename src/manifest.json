@@ -1,0 +1,15 @@
+{"name" : "Altylya",
+    "short_name" : "Altylya",
+    "start_url" : "https://pwa.altylya.com/index.html",
+    "display" : "standalone",
+    "background_color" : "#F09200",
+    "theme_color" : "#F09200",
+    "lang" : "",
+    "orientation" : "undefined",
+    "generated" : "undefined",
+    "icons" : [
+        {
+            "src": "https://pwa.altylya.com/assets/imgs/logo.png",
+            "sizes": "512x512"
+        }
+    ]}
