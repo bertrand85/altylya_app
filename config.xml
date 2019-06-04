@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.altylya.avi" version="0.5.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.altylya.avi" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>altylya</name>
-    <description>Carnet de bord avicole 0.5.1</description>
+    <description>Carnet de bord avicole 1.0.0</description>
     <author email="bertrand@altylya.com" href="http://altylya.com/">Altylya</author>
     <content src="index.html" />
     <access origin="*" />
