@@ -1,6 +1,6 @@
 {
   "name": "altylya",
-  "version": "0.5.1",
+  "version": "1.0.0",
   "author": "SARL TEXIER Bertrand",
   "homepage": "http://altylya.com/",
   "private": true,
@@ -38,7 +38,6 @@
     "ajv": "^6.5.5",
     "angular2-justgage": "^0.3.0",
     "chart.js": "^2.7.3",
-    "com.synconset.imagepicker": "^2.1.10",
     "cordova-android": "7.0.0",
     "cordova-android-play-services-gradle-release": "^2.0.0",
     "cordova-custom-config": "^5.0.2",
