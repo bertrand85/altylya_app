@@ -182,7 +182,8 @@ export let ICABlocks = {
     {min: 28.1,  max: 43,  block: "aliment"},
     {min: 43.1,  max: 69, block: "sanitaire"},
     {min: 69.1, max: 82, block: "pathologie"},
-    {min: 82.1, max: 100, block: "enlevement"}
+    {min: 82.1, max: 90, block: "enlevement"},
+    {min: 90.1, max: 100, block: "signature"}
   ]
 
 }

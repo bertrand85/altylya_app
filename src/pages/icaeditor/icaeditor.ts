@@ -212,7 +212,30 @@ export class IcaeditorPage {
     const myModalOptions: ModalOptions = {
       enableBackdropDismiss: true
     };
-    const myModal: Modal = this.modal.create('EnlevementsBlockPage', { enlevements: this.enlevement.icadata.ica.enlevements }, myModalOptions);
+    const myModal: Modal = this.modal.create('EnlevementsBlockPage', {enlevements: this.enlevement.icadata.ica.enlevements}, myModalOptions);
+
+    myModal.present();
+
+
+    myModal.onWillDismiss((data) => {
+
+      if (data) {
+        this.enlevement.saveBlockData('enlevements', data);
+
+        console.log("I'm about to dismiss");
+        console.log(data);
+
+      }
+
+    });
+  }
+
+  gotoSignature = () => {
+
+    const myModalOptions: ModalOptions = {
+      enableBackdropDismiss: true
+    };
+    const myModal: Modal = this.modal.create('SignatureBlockPage', { }, myModalOptions);
 
     myModal.present();
 
@@ -220,7 +243,7 @@ export class IcaeditorPage {
     myModal.onWillDismiss((data) => {
 
       if(data) {
-        this.enlevement.saveBlockData('enlevements', data);
+        this.enlevement.saveBlockData('signature', data);
 
         console.log("I'm about to dismiss");
         console.log(data);
@@ -258,6 +281,9 @@ export class IcaeditorPage {
           break;
         case 'enlevement':
           this.gotoEnlevements();
+          break;
+        case 'signature':
+          this.gotoSignature();
           break;
         default:
           this.gotoElevage();

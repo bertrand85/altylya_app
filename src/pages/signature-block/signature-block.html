@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="closeModal()">Annuler</button>
+    </ion-buttons>
+    <ion-title>Signer et envoyer</ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="saveModal()">Ok</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding no-bounce>
+  <div #fixedContainer ion-fixed>
+    <canvas #signatureCanvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)"></canvas>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button color="danger" (click)="clearPad()">Effacer et recommencer</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <img src='{{signatureImg}}' />
+</ion-content>
