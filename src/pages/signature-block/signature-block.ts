@@ -31,9 +31,14 @@ export class SignatureBlockPage {
   @ViewChild(Content) content: Content;
   @ViewChild('fixedContainer') fixedContainer: any;
 
+
+  signatureForm : FormGroup;
+  signaturesMail : any;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public renderer: Renderer,
+              public formBuilder: FormBuilder,
               private plt: Platform,
               private view: ViewController) {
   }
@@ -51,6 +56,11 @@ export class SignatureBlockPage {
     this.canvasElement = this.canvasEL.nativeElement;
     this.canvasElement.width = this.plt.width() + '';
     this.canvasElement.height = 200;
+
+    // form pour le premier slide
+    this.signatureForm = this.formBuilder.group({
+      mails : [this.signaturesMail]
+    });
   }
 
   startDrawing(ev) {
@@ -95,6 +105,8 @@ export class SignatureBlockPage {
   saveModal() {
     var dataUrl = this.canvasElement.toDataURL();
     this.signatureImg = dataUrl;
-    this.view.dismiss(this.signatureImg);
+    let values = this.signatureForm.value;
+    let datas = {'signatureImg': this.signatureImg, 'emails': values};
+    this.view.dismiss(datas);
   }
 }

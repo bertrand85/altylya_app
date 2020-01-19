@@ -4,12 +4,12 @@ export interface AppOptions {
 }
 
 export let ALTYLYA_API = {
-  imgurl:'https://api060.altylya.com/images',
-  url : 'https://apiaccess060.altylya.com/api',
-  urlapi2 : 'https://api060.altylya.com/',
-  // imgurl:'http://api2altylya.test/images',
-  // url : 'http://api.altylya.test/api',
-  // urlapi2 : 'http://api2altylya.test/',
+  // imgurl:'https://api060.altylya.com/images',
+  // url : 'https://apiaccess060.altylya.com/api',
+  // urlapi2 : 'https://api060.altylya.com/',
+  imgurl:'http://api2.altylya.test/images',
+  url : 'http://api.altylya.test/api',
+  urlapi2 : 'http://api2.altylya.test/',
   user_login        : '/post/user/login',
   user_status_get   : '/get/user/status',
   user_signup       : '/post/user/register',

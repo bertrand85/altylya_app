@@ -4,9 +4,6 @@
       <button ion-button (click)="closeModal()">Annuler</button>
     </ion-buttons>
     <ion-title>Signer et envoyer</ion-title>
-    <ion-buttons right>
-      <button ion-button (click)="saveModal()">Ok</button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -16,10 +13,39 @@
     <ion-grid>
       <ion-row>
         <ion-col col-12 text-center>
-          <button ion-button color="danger" (click)="clearPad()">Effacer et recommencer</button>
+          <button ion-button color="danger" small (click)="clearPad()">Effacer et recommencer</button>
         </ion-col>
       </ion-row>
     </ion-grid>
+    <form *ngIf="signatureForm" [formGroup]="signatureForm">
+      <ion-list>
+        <ion-row>
+          <ion-col col-12>
+            <ion-item>
+              <p>La fiche signée vous est envoyé par mail. Vous pouvez en envoyez une copie à d'autres destinataire en entrant leur adresse e-mail ci-dessous, séparée par des espaces</p>
+              <ion-label floating>Envoyer une copie à</ion-label>
+              <ion-input formControlName="mails" type="text"></ion-input>
+
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </form>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 text-center>
+          <button ion-button color="secondary" small (click)="saveModal()">Signer et envoyer</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div class="help" padding>
+      <h3>Informations</h3>
+      <p>Les fiches ICA ne sont pas conservées sur nos serveurs pour l'instant.</p>
+      <p>Elles vous sont envoyés à l'adresse mail de votre compte ALTYLYA ainsi qu'a des destinataires que vous pouvez ajouter dans la zone de saisie prévue à cet effet.</p>
+      <p>Les fiches ICA étant des documents sensibles,
+        nous ne pouvons prendre en charge la responsabilité des leur diffusion et de leur conservation
+        par nos serveur dans une version gratuite de notre application</p>
+    </div>
   </div>
   <img src='{{signatureImg}}' />
 </ion-content>
