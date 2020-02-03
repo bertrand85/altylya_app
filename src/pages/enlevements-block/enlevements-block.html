@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="closeModal()">Annuler</button>
+    </ion-buttons>
+    <ion-title>Enlèvements</ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="saveModal()">Ok</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <form [formGroup]="slideAliments">
+      <ion-list no-lines>
+        <ion-row *ngFor="let alim of enlevements?.items, let i=index" class="row-alim">
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked>Date</ion-label>
+              <ion-input type="date" value="{{enlevements?.items[i].date}}" name="date[]" required></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label stacked>Nombre</ion-label>
+              <ion-input type="text" value="{{enlevements?.items[i].nombre}}" name="nombre[]" required></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-12>
+            <ion-item>
+              <ion-label floating>Observations</ion-label>
+              <ion-input type="text" value="{{enlevements?.items[i].observations}}" name="observations[]" required></ion-input>
+            </ion-item>
+            <hr />
+          </ion-col>
+        </ion-row>
+
+
+      </ion-list>
+      <button ion-button clear small color="altylyasecondary" icon-start (click)="addEnlevement()" float-right>
+        <ion-icon name="md-add" item-end></ion-icon><span item-end>Ajouter un enlèvement</span>
+      </button>
+
+    </form>
+
+
+  </div>
+</ion-content>
