@@ -10,6 +10,7 @@ page-lotjournalhisto {
     .inline, .inline span {
       display: inline !important;
     }
+
     .mort, .day {
 
       display: block;}
@@ -57,7 +58,10 @@ page-lotjournalhisto {
       /*background-color: color($colors,inactive);*/
     }
 
-
+    .toggle-ios, .toggle-md {
+      display: block;
+      margin: 0 auto;
+    }
   }
 
 }

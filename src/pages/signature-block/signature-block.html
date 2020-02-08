@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding no-bounce>
+<ion-content padding>
   <div #fixedContainer ion-fixed>
     <canvas #signatureCanvas (touchstart)="startDrawing($event)" (touchmove)="moved($event)"></canvas>
     <ion-grid>
@@ -17,12 +17,19 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+  </div>
+  <div>
     <form *ngIf="signatureForm" [formGroup]="signatureForm">
       <ion-list>
         <ion-row>
+          <ion-col  col-12>
+            <p>La fiche signée vous est envoyé par mail. Vous pouvez en envoyez une copie à d'autres
+              destinataires en entrant leur adresse e-mail ci-dessous, séparée par des espaces</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
           <ion-col col-12>
             <ion-item>
-              <p>La fiche signée vous est envoyé par mail. Vous pouvez en envoyez une copie à d'autres destinataire en entrant leur adresse e-mail ci-dessous, séparée par des espaces</p>
               <ion-label floating>Envoyer une copie à</ion-label>
               <ion-input formControlName="mails" type="text"></ion-input>
 
